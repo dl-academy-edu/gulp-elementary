@@ -1,5 +1,5 @@
 let gulp = require("gulp"),
-  sass = require("gulp-sass"),
+  sass = require("gulp-sass")(require("sass")),
   autoprefixer = require("gulp-autoprefixer"),
   cleanCSS = require("gulp-clean-css"),
   babel = require("gulp-babel"),
@@ -9,8 +9,6 @@ let gulp = require("gulp"),
   fileinclude = require("gulp-file-include"),
   fs = require("fs-extra"),
   path = require("path");
-
-sass.compiler = require("node-sass"); // Переназначаем компилирование
 
 // Название build папки
 const finalFolder = "build";
@@ -69,13 +67,11 @@ function js(src, dest) {
 function fonts(src, dest) {
   fs.mkdirSync(dest, {recursive: true});
   fs.copy(src, dest);
-  // TODO: нужно сделать оптимизацию шрифтов
 }
 // Функция обработки картинок
 function img(src, dest) {
   fs.mkdirSync(dest, {recursive: true});
   fs.copy(src, dest);
-  // TODO: нужно сделать оптимизацию картинок
 }
 
 // Функция сборки проекта
